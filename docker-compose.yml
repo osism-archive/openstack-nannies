@@ -1,0 +1,11 @@
+---
+version: '3'
+services:
+  crond:
+    container_name: openstack-nannies
+    build: .
+    env_file:
+      - ./configuration/nova.env
+    volumes:
+      - ./configuration/clouds.yml:/etc/openstack/clouds.yml:ro
+      - ./configuration/secure.yml:/etc/openstack/secure.yml:ro

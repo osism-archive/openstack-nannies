@@ -1,0 +1,4 @@
+prettytable
+pymysql
+python-openstacksdk
+sqlalchemy

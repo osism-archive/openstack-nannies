@@ -1,0 +1,2 @@
+*/30 * * * * /usr/local/bin/neutron-check-dhcp-agents.py
+# 30 3 * * * /usr/local/bin/nova-quota-sync.py --all --auto-sync
