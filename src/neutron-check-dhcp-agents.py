@@ -8,8 +8,17 @@ import openstack
 conn = openstack.connect(cloud='service')
 
 for network in conn.network.networks():
-    if network.is_admin_state_up == False or network.is_router_external:
-         continue
+    if network.is_admin_state_up == False:
+        continue
+
+    if network.is_router_external:
+        agents = conn.network.network_hosting_dhcp_agents(network)
+        length = sum(1 for x in agents)
+        if length > 0:
+            print("Network %s is external and has %d agents assigned" % (network.name, length))
+            for agent in agents:
+                conn.network.remove_dhcp_agent_from_network(agent, network)
+        continue
 
     is_dhcp_enabled = False
     for subnet in network.subnet_ids:
