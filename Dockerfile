@@ -12,7 +12,7 @@ RUN apk add --no-cache --virtual .build-deps \
       openssl-dev \
       python3-dev \
     && apk add --no-cache tini \
-    && pip install -r requirements.txt \
+    && pip install --no-cache-dir -r requirements.txt \
     && rm /requirements.txt \
     && apk del .build-deps
 
